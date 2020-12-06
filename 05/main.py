@@ -1,8 +1,10 @@
 import math
 
-with open('input.txt') as f:
+with open('chase_input.txt') as f:
     input_file = f.readlines()
 input_file = [x.strip() for x in input_file]
+
+highest_id = 0
 
 id_array = []
 
@@ -42,6 +44,8 @@ for elem in input_file:
     seat_array[upper][upper_col] = "X"
     id = upper * 8 + upper_col
     id_array.append(id)
+    if (id > highest_id):
+        highest_id = id
 
 for row in range(0, len(seat_array)):
     for col in range(0, len(seat_array[row])):
@@ -49,3 +53,5 @@ for row in range(0, len(seat_array)):
             id = row * 8 + col
             if id + 1 in id_array and id - 1 in id_array:
                 print(id)
+
+print("highest " + str(highest_id))
